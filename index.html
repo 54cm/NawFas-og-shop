@@ -11,37 +11,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-  --bg:#05040a;
-  --bg2:#0b0712;
+  --bg:#07060b;
+  --bg-2:#0b0910;
+  --surface:#131019;
+  --surface-2:#18131f;
+  --border:#292033;
 
-  --surface:rgba(18,13,28,.78);
-  --surface2:rgba(28,18,42,.72);
+  --text:#f8f4ff;
+  --muted:#948da3;
+  --muted-2:#5c5468;
 
-  --border:rgba(178,92,245,.20);
-
-  --text:#f8f5ff;
-  --muted:#a59bb5;
-  --muted2:#62576f;
-
-  --accent:#b45cff;
-  --accent2:#ff4fa8;
-  --blue:#6c63ff;
+  --accent:#b25cf5;
+  --accent-2:#f254a3;
 
   --green:#4fd6b5;
   --amber:#f5b942;
   --red:#ef5b66;
 
-  --font-display:'Orbitron',sans-serif;
-  --font-title:'Space Grotesk',sans-serif;
+  --font-display:'Space Grotesk',sans-serif;
   --font-mono:'IBM Plex Mono',monospace;
   --font-body:'Inter',sans-serif;
 }
-
 
 /* =========================
    RESET
@@ -58,11 +53,12 @@ html{
 }
 
 body{
-  background:var(--bg);
+  background:#07060b;
   color:var(--text);
   font-family:var(--font-body);
   min-height:100vh;
   overflow-x:hidden;
+  position:relative;
 }
 
 a{
@@ -70,110 +66,144 @@ a{
   text-decoration:none;
 }
 
+::selection{
+  background:var(--accent-2);
+  color:#fff;
+}
 
 /* =========================
    ANIMATED BACKGROUND
 ========================= */
 
-.background{
+.bg-blobs{
   position:fixed;
   inset:0;
   overflow:hidden;
-  pointer-events:none;
   z-index:0;
+  pointer-events:none;
   background:
-    radial-gradient(circle at 50% 0%,rgba(125,45,200,.12),transparent 35%),
-    #05040a;
+    radial-gradient(circle at 50% 30%,rgba(178,92,245,.07),transparent 35%),
+    #07060b;
 }
 
+/* gros halos */
 
-/* moving glow */
-
-.glow{
+.blob{
   position:absolute;
   border-radius:50%;
-  filter:blur(90px);
+  filter:blur(75px);
   opacity:.55;
-  mix-blend-mode:screen;
+  will-change:transform;
 }
 
-.glow.one{
-  width:650px;
-  height:650px;
-  background:radial-gradient(circle,#9b35ff,transparent 68%);
-  left:-250px;
-  top:-250px;
-  animation:moveGlow1 14s ease-in-out infinite alternate;
+.blob-1{
+  width:520px;
+  height:520px;
+  top:-180px;
+  left:-120px;
+
+  background:radial-gradient(
+    circle,
+    rgba(178,92,245,.7) 0%,
+    rgba(178,92,245,.25) 35%,
+    transparent 72%
+  );
+
+  animation:
+    blobMove1 8s ease-in-out infinite alternate;
 }
 
-.glow.two{
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle,#ff2e9d,transparent 68%);
-  right:-250px;
-  top:50px;
-  animation:moveGlow2 17s ease-in-out infinite alternate;
+.blob-2{
+  width:480px;
+  height:480px;
+  top:5%;
+  right:-160px;
+
+  background:radial-gradient(
+    circle,
+    rgba(242,84,163,.65) 0%,
+    rgba(242,84,163,.2) 35%,
+    transparent 72%
+  );
+
+  animation:
+    blobMove2 10s ease-in-out infinite alternate;
 }
 
-.glow.three{
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle,#4934ff,transparent 68%);
+.blob-3{
+  width:500px;
+  height:500px;
+  bottom:-220px;
   left:25%;
-  bottom:-350px;
-  animation:moveGlow3 20s ease-in-out infinite alternate;
+
+  background:radial-gradient(
+    circle,
+    rgba(91,61,240,.65) 0%,
+    rgba(91,61,240,.18) 35%,
+    transparent 72%
+  );
+
+  animation:
+    blobMove3 12s ease-in-out infinite alternate;
 }
 
-@keyframes moveGlow1{
+@keyframes blobMove1{
+
   0%{
-    transform:translate(0,0) scale(1);
+    transform:translate3d(0,0,0) scale(1);
   }
 
   50%{
-    transform:translate(280px,170px) scale(1.25);
+    transform:translate3d(220px,150px,0) scale(1.25);
   }
 
   100%{
-    transform:translate(100px,400px) scale(.9);
+    transform:translate3d(-80px,300px,0) scale(.9);
   }
+
 }
 
-@keyframes moveGlow2{
+@keyframes blobMove2{
+
   0%{
-    transform:translate(0,0) scale(1);
+    transform:translate3d(0,0,0) scale(1);
   }
 
   50%{
-    transform:translate(-300px,180px) scale(1.2);
+    transform:translate3d(-240px,180px,0) scale(1.2);
   }
 
   100%{
-    transform:translate(-100px,-120px) scale(.9);
+    transform:translate3d(-100px,-120px,0) scale(.9);
   }
+
 }
 
-@keyframes moveGlow3{
+@keyframes blobMove3{
+
   0%{
-    transform:translate(0,0) scale(1);
+    transform:translate3d(0,0,0) scale(1);
   }
 
   50%{
-    transform:translate(220px,-200px) scale(1.3);
+    transform:translate3d(180px,-180px,0) scale(1.25);
   }
 
   100%{
-    transform:translate(-180px,-80px) scale(.95);
+    transform:translate3d(-160px,50px,0) scale(.9);
   }
-}
 
+}
 
 /* =========================
    STARS
 ========================= */
 
 .stars{
-  position:absolute;
+  position:fixed;
   inset:0;
+  z-index:0;
+  pointer-events:none;
   overflow:hidden;
 }
 
@@ -183,129 +213,94 @@ a{
   height:2px;
   border-radius:50%;
   background:white;
-  box-shadow:
-    0 0 5px white,
-    0 0 10px rgba(194,108,255,.9);
 
-  opacity:.7;
+  box-shadow:
+    0 0 5px rgba(255,255,255,.9),
+    0 0 10px rgba(178,92,245,.7);
+
+  opacity:.55;
+
   animation:
-    starMove linear infinite,
-    starGlow ease-in-out infinite alternate;
+    starTwinkle var(--duration) ease-in-out infinite;
 }
 
-@keyframes starMove{
+@keyframes starTwinkle{
 
-  0%{
-    transform:translate3d(0,-20px,0);
-    opacity:0;
-  }
-
-  10%{
-    opacity:.8;
+  0%,100%{
+    opacity:.15;
+    transform:scale(.6);
   }
 
   50%{
     opacity:1;
-  }
-
-  90%{
-    opacity:.7;
-  }
-
-  100%{
-    transform:translate3d(-280px,105vh,0);
-    opacity:0;
+    transform:scale(1.5);
   }
 
 }
 
-@keyframes starGlow{
-
-  from{
-    box-shadow:
-      0 0 3px white,
-      0 0 7px #b45cff;
-  }
-
-  to{
-    box-shadow:
-      0 0 7px white,
-      0 0 18px #ff4fa8;
-  }
-}
-
-
-/* bigger shooting stars */
+/* =========================
+   SHOOTING STARS
+========================= */
 
 .shooting-star{
   position:absolute;
-  width:110px;
+
+  width:120px;
   height:2px;
 
   background:linear-gradient(
     90deg,
     transparent,
-    rgba(255,255,255,.95),
-    #c76aff,
-    transparent
+    rgba(255,255,255,.2),
+    #fff,
+    #d99aff
   );
 
-  border-radius:50%;
+  border-radius:100px;
+
+  box-shadow:
+    0 0 6px #fff,
+    0 0 14px #b25cf5,
+    0 0 25px #b25cf5;
 
   transform:rotate(-35deg);
 
-  filter:
-    drop-shadow(0 0 5px #b45cff)
-    drop-shadow(0 0 12px #ff4fa8);
+  animation:shootingStar 1.8s linear forwards;
 
   opacity:0;
-
-  animation:shoot 7s linear infinite;
 }
 
-.shooting-star:nth-child(1){
-  top:8%;
-  left:85%;
-  animation-delay:1s;
-}
-
-.shooting-star:nth-child(2){
-  top:35%;
-  left:65%;
-  animation-delay:4s;
-}
-
-.shooting-star:nth-child(3){
-  top:60%;
-  left:90%;
-  animation-delay:8s;
-}
-
-@keyframes shoot{
+@keyframes shootingStar{
 
   0%{
-    transform:translate(0,0) rotate(-35deg);
     opacity:0;
+    transform:
+      translate3d(0,0,0)
+      rotate(-35deg)
+      scaleX(.2);
   }
 
-  5%{
+  10%{
     opacity:1;
   }
 
-  25%{
-    transform:translate(-450px,300px) rotate(-35deg);
-    opacity:0;
+  70%{
+    opacity:1;
   }
 
   100%{
     opacity:0;
+
+    transform:
+      translate3d(-500px,500px,0)
+      rotate(-35deg)
+      scaleX(1);
   }
 
 }
 
-
 /* =========================
-   CONTAINER
+   CONTENT
 ========================= */
 
 .container{
@@ -314,7 +309,6 @@ a{
   position:relative;
   z-index:2;
 }
-
 
 /* =========================
    NAV
@@ -327,70 +321,74 @@ nav{
   align-items:center;
   justify-content:space-between;
 
-  border-bottom:1px solid rgba(178,92,245,.15);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .logo{
+  font-family:var(--font-display);
+  font-size:19px;
+  font-weight:700;
+
   display:flex;
   align-items:center;
   gap:9px;
-
-  font-family:var(--font-display);
-  font-size:18px;
-  font-weight:800;
-  letter-spacing:.5px;
-
-  text-shadow:
-    0 0 8px rgba(255,255,255,.15),
-    0 0 18px rgba(178,92,245,.4);
 }
 
 .logo-mascot{
-  width:34px;
-  height:34px;
+  width:32px;
+  height:32px;
 
   border-radius:50%;
-
   object-fit:cover;
 
-  border:2px solid rgba(194,108,255,.65);
+  border:2px solid rgba(178,92,245,.5);
 
   box-shadow:
-    0 0 10px rgba(178,92,245,.6),
-    0 0 25px rgba(178,92,245,.25);
+    0 0 10px rgba(178,92,245,.35),
+    0 0 25px rgba(178,92,245,.15);
+
+  transition:.3s;
+}
+
+.logo-mascot:hover{
+  transform:scale(1.1) rotate(5deg);
+
+  box-shadow:
+    0 0 15px rgba(178,92,245,.8),
+    0 0 35px rgba(242,84,163,.4);
 }
 
 .logo .dot{
-  width:7px;
-  height:7px;
+  width:8px;
+  height:8px;
 
   border-radius:50%;
 
   background:linear-gradient(
     135deg,
     var(--accent),
-    var(--accent2)
+    var(--accent-2)
   );
 
   box-shadow:
-    0 0 7px var(--accent),
-    0 0 18px var(--accent2);
+    0 0 8px var(--accent),
+    0 0 18px var(--accent-2);
 
-  animation:dotPulse 2s ease-in-out infinite;
+  animation:dotGlow 2s infinite alternate;
 }
 
-@keyframes dotPulse{
+@keyframes dotGlow{
 
-  0%,100%{
-    transform:scale(1);
-    box-shadow:0 0 7px var(--accent);
+  from{
+    box-shadow:
+      0 0 6px var(--accent),
+      0 0 10px var(--accent-2);
   }
 
-  50%{
-    transform:scale(1.35);
+  to{
     box-shadow:
       0 0 12px var(--accent),
-      0 0 25px var(--accent2);
+      0 0 25px var(--accent-2);
   }
 
 }
@@ -399,10 +397,10 @@ nav{
   display:flex;
   gap:26px;
 
-  font-family:var(--font-mono);
-  font-size:13px;
-
+  font-size:13.5px;
   color:var(--muted);
+
+  font-family:var(--font-mono);
 }
 
 .nav-right a{
@@ -410,23 +408,18 @@ nav{
 }
 
 .nav-right a:hover{
-  color:white;
-
+  color:#fff;
   text-shadow:
-    0 0 8px #b45cff,
-    0 0 18px #ff4fa8;
+    0 0 8px rgba(178,92,245,.9);
 }
-
 
 /* =========================
    HERO
 ========================= */
 
 .hero{
-  padding:105px 10px 65px;
-
+  padding:100px 10px 64px;
   text-align:center;
-
   position:relative;
 }
 
@@ -436,23 +429,20 @@ nav{
   gap:8px;
 
   font-family:var(--font-mono);
-  font-size:11px;
+  font-size:12px;
 
-  color:#aaa0b7;
+  color:var(--muted);
 
-  border:1px solid rgba(178,92,245,.25);
+  border:1px solid var(--border);
+  background:rgba(19,16,25,.85);
 
-  background:rgba(18,13,28,.7);
-
-  padding:7px 15px;
-
+  padding:6px 14px;
   border-radius:100px;
 
-  margin-bottom:28px;
+  margin-bottom:26px;
 
   box-shadow:
-    0 0 20px rgba(178,92,245,.06),
-    inset 0 0 15px rgba(178,92,245,.03);
+    0 0 25px rgba(178,92,245,.05);
 }
 
 .eyebrow span{
@@ -465,9 +455,9 @@ nav{
 
   box-shadow:
     0 0 7px var(--green),
-    0 0 16px var(--green);
+    0 0 15px var(--green);
 
-  animation:pulse 2s ease-in-out infinite;
+  animation:pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes pulse{
@@ -478,100 +468,122 @@ nav{
   }
 
   50%{
-    opacity:.45;
+    opacity:.4;
     transform:scale(.7);
   }
 
 }
 
-
-/* MAIN TITLE */
+/* =========================
+   HERO TITLE
+========================= */
 
 .hero h1{
-  font-family:var(--font-display);
 
-  font-size:clamp(38px,6vw,64px);
+  /*
+    COMIC SANS UNIQUEMENT POUR
+    "Selling OG names."
+  */
 
-  line-height:1.08;
+  font-family:"Comic Sans MS","Comic Sans",cursive;
 
-  letter-spacing:-1px;
+  font-size:clamp(38px,6vw,62px);
 
-  font-weight:800;
+  line-height:1.04;
 
-  margin-bottom:20px;
+  letter-spacing:-2px;
+
+  font-weight:700;
+
+  margin-bottom:18px;
+
+  color:#fff;
 
   text-shadow:
-    0 0 8px rgba(255,255,255,.15),
-    0 0 25px rgba(178,92,245,.18);
+    0 0 8px rgba(255,255,255,.35),
+    0 0 22px rgba(178,92,245,.25);
+
+  animation:titleGlow 3s ease-in-out infinite alternate;
 }
 
-.accent-text{
+@keyframes titleGlow{
+
+  from{
+    text-shadow:
+      0 0 7px rgba(255,255,255,.25),
+      0 0 18px rgba(178,92,245,.25);
+  }
+
+  to{
+    text-shadow:
+      0 0 10px rgba(255,255,255,.55),
+      0 0 30px rgba(178,92,245,.65),
+      0 0 55px rgba(242,84,163,.3);
+  }
+
+}
+
+.hero h1 .accent-text{
+
   background:
     linear-gradient(
-      90deg,
-      #a84dff,
-      #e05bff,
-      #ff4fa8,
-      #a84dff
+      100deg,
+      #b25cf5,
+      #f254a3,
+      #ffffff,
+      #b25cf5
     );
 
-  background-size:250% auto;
+  background-size:300% auto;
 
   -webkit-background-clip:text;
   background-clip:text;
 
   color:transparent;
 
-  animation:textShine 4s linear infinite;
-
-  filter:
-    drop-shadow(0 0 8px rgba(178,92,245,.6))
-    drop-shadow(0 0 20px rgba(255,79,168,.35));
+  animation:
+    gradientText 3s linear infinite;
 }
 
-@keyframes textShine{
+@keyframes gradientText{
 
   to{
-    background-position:250% center;
+    background-position:300% center;
   }
 
 }
 
-
-/* HERO TEXT */
-
 .hero p{
   color:var(--muted);
+  font-size:15.5px;
 
-  font-size:15px;
+  max-width:460px;
 
-  max-width:470px;
+  margin:0 auto;
 
-  margin:auto;
-
-  line-height:1.7;
-
-  text-shadow:0 0 10px rgba(178,92,245,.08);
+  line-height:1.6;
 }
 
-
-/* MASCOT */
+/* =========================
+   HERO DOG
+========================= */
 
 .hero-mascot{
+
   position:absolute;
 
-  width:88px;
-  height:88px;
+  width:86px;
+  height:86px;
 
   border-radius:50%;
 
   object-fit:cover;
 
-  border:3px solid rgba(178,92,245,.45);
+  border:3px solid rgba(178,92,245,.5);
 
   box-shadow:
-    0 0 12px rgba(178,92,245,.5),
-    0 0 35px rgba(178,92,245,.2);
+    0 0 15px rgba(178,92,245,.45),
+    0 8px 30px rgba(0,0,0,.5);
 
   transform:rotate(-8deg);
 
@@ -581,15 +593,19 @@ nav{
 @keyframes mascotFloat{
 
   0%,100%{
-    transform:rotate(-8deg) translateY(0);
+    transform:
+      rotate(-8deg)
+      translateY(0);
   }
 
   50%{
-    transform:rotate(-3deg) translateY(-10px);
+    transform:
+      rotate(-4deg)
+      translateY(-10px)
+      scale(1.04);
   }
 
 }
-
 
 /* =========================
    PLATFORMS
@@ -598,47 +614,47 @@ nav{
 .platform-row{
   display:flex;
   justify-content:center;
-
   gap:12px;
 
-  margin-top:38px;
+  margin-top:36px;
 
   flex-wrap:wrap;
 }
 
 .platform-badge{
+
   display:flex;
   align-items:center;
   gap:8px;
 
-  padding:9px 15px 9px 9px;
+  padding:8px 15px 8px 9px;
 
-  border:1px solid rgba(178,92,245,.18);
+  border:1px solid var(--border);
 
-  background:rgba(18,13,28,.72);
+  background:rgba(19,16,25,.9);
 
   border-radius:100px;
 
-  font-size:12px;
-
+  font-size:12.5px;
   color:var(--muted);
 
   transition:.25s;
 
   box-shadow:
-    0 0 15px rgba(178,92,245,.03);
+    0 0 20px rgba(0,0,0,.15);
 }
 
 .platform-badge:hover{
-  color:white;
+
+  border-color:#68428e;
+
+  color:#fff;
 
   transform:translateY(-3px);
 
-  border-color:rgba(178,92,245,.5);
-
   box-shadow:
-    0 0 15px rgba(178,92,245,.2),
-    0 0 35px rgba(255,79,168,.08);
+    0 8px 25px rgba(178,92,245,.15),
+    0 0 15px rgba(178,92,245,.1);
 }
 
 .platform-badge svg{
@@ -646,115 +662,93 @@ nav{
   height:19px;
 }
 
-
 /* =========================
-   SECTION TITLES
+   SECTIONS
 ========================= */
 
 .section-label{
+
   font-family:var(--font-mono);
 
-  font-size:11px;
+  font-size:12px;
 
-  letter-spacing:2px;
+  letter-spacing:1.5px;
 
   text-transform:uppercase;
 
-  color:#756980;
+  color:var(--muted-2);
 
   margin-bottom:10px;
-
-  text-shadow:0 0 10px rgba(178,92,245,.2);
 }
 
 .section-title{
-  font-family:var(--font-title);
 
-  font-size:28px;
+  font-family:var(--font-display);
 
-  font-weight:700;
+  font-size:26px;
+
+  font-weight:600;
 
   letter-spacing:-.7px;
 
   margin-bottom:36px;
 
-  text-shadow:
-    0 0 8px rgba(255,255,255,.08),
-    0 0 18px rgba(178,92,245,.2);
 }
-
 
 /* =========================
    SHOP
 ========================= */
 
 #shop{
-  padding-top:35px;
+  padding-top:36px;
 }
 
 .products{
+
   display:grid;
 
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
 
   gap:14px;
 }
 
 .product{
+
   position:relative;
 
   background:
     linear-gradient(
-      145deg,
-      rgba(25,17,38,.88),
-      rgba(9,7,15,.92)
+      180deg,
+      rgba(19,16,25,.95),
+      rgba(11,9,15,.95)
     );
 
-  border:1px solid rgba(178,92,245,.18);
+  border:1px solid var(--border);
 
-  border-radius:15px;
+  border-radius:13px;
 
   padding:22px 20px;
 
   transition:
-    transform .3s,
-    border-color .3s,
-    box-shadow .3s;
-
-  overflow:hidden;
-}
-
-.product::before{
-  content:"";
-
-  position:absolute;
-
-  width:180px;
-  height:180px;
-
-  top:-100px;
-  right:-100px;
-
-  background:radial-gradient(
-    circle,
-    rgba(178,92,245,.18),
-    transparent 70%
-  );
-
-  pointer-events:none;
+    transform .25s,
+    border-color .25s,
+    box-shadow .25s;
 }
 
 .product:hover{
-  transform:translateY(-6px);
 
-  border-color:rgba(178,92,245,.5);
+  transform:translateY(-5px);
+
+  border-color:#4c3768;
 
   box-shadow:
-    0 10px 35px rgba(0,0,0,.35),
-    0 0 25px rgba(178,92,245,.12);
+    0 15px 40px rgba(178,92,245,.12),
+    0 0 20px rgba(178,92,245,.05);
 }
 
 .product-eyebrow{
+
   display:flex;
   align-items:center;
 
@@ -762,13 +756,13 @@ nav{
 
   font-family:var(--font-mono);
 
-  font-size:10px;
+  font-size:11px;
 
-  color:#746b80;
+  color:var(--muted-2);
 
   text-transform:uppercase;
 
-  letter-spacing:1px;
+  letter-spacing:.8px;
 
   margin-bottom:14px;
 }
@@ -779,6 +773,7 @@ nav{
 }
 
 .product-top{
+
   display:flex;
 
   align-items:baseline;
@@ -789,28 +784,30 @@ nav{
 }
 
 .product h2{
-  font-family:var(--font-title);
+
+  font-family:var(--font-display);
 
   font-size:18px;
 
-  font-weight:700;
+  font-weight:600;
 }
 
 .price{
+
   font-family:var(--font-mono);
 
   font-size:16px;
 
   font-weight:600;
 
-  color:#ff68b4;
+  color:var(--accent-2);
 
   text-shadow:
-    0 0 7px rgba(255,79,168,.6),
-    0 0 16px rgba(178,92,245,.3);
+    0 0 10px rgba(242,84,163,.35);
 }
 
 .status{
+
   display:inline-flex;
 
   align-items:center;
@@ -819,16 +816,17 @@ nav{
 
   font-family:var(--font-mono);
 
-  font-size:10px;
+  font-size:11px;
 
-  padding:5px 9px;
+  padding:4px 9px;
 
-  border-radius:6px;
+  border-radius:5px;
 
   margin-bottom:16px;
 }
 
 .status::before{
+
   content:"";
 
   width:5px;
@@ -838,159 +836,116 @@ nav{
 }
 
 .status.ok{
+
   color:var(--green);
 
-  background:rgba(79,214,181,.08);
+  background:rgba(79,214,181,.1);
 }
 
 .status.ok::before{
+
   background:var(--green);
 
   box-shadow:
     0 0 6px var(--green),
-    0 0 13px var(--green);
+    0 0 12px var(--green);
 }
 
 .status.limited{
+
   color:var(--amber);
 
-  background:rgba(245,185,66,.08);
+  background:rgba(245,185,66,.1);
 }
 
 .status.limited::before{
+
   background:var(--amber);
 
-  box-shadow:0 0 8px var(--amber);
+  box-shadow:
+    0 0 6px var(--amber);
 }
 
 .status.out{
+
   color:var(--red);
 
-  background:rgba(239,91,102,.08);
+  background:rgba(239,91,102,.1);
 }
 
 .status.out::before{
   background:var(--red);
-
-  box-shadow:0 0 7px var(--red);
 }
 
 .description{
+
   color:var(--muted);
 
-  font-size:12.5px;
+  font-size:13px;
 
-  line-height:1.7;
+  line-height:1.6;
 
   margin-bottom:20px;
 }
 
-
-/* =========================
-   BUTTONS / STRIPE
-========================= */
-
 .order{
+
   display:block;
 
   text-align:center;
 
-  position:relative;
-
-  overflow:hidden;
-
   background:
     linear-gradient(
       100deg,
-      #9b43ef,
-      #e64aa4
+      var(--accent),
+      var(--accent-2)
     );
 
-  color:white;
+  color:#fff;
 
-  padding:11px;
+  padding:10.5px;
 
   border-radius:8px;
 
   font-size:13px;
 
-  font-weight:700;
-
-  letter-spacing:.2px;
+  font-weight:600;
 
   transition:.25s;
 
   box-shadow:
-    0 0 12px rgba(178,92,245,.25);
-}
-
-
-/* light passing over button */
-
-.order::before{
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:-120%;
-
-  width:70%;
-  height:100%;
-
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.3),
-    transparent
-  );
-
-  transform:skewX(-20deg);
-
-  animation:buttonShine 3.5s ease-in-out infinite;
-}
-
-@keyframes buttonShine{
-
-  0%{
-    left:-120%;
-  }
-
-  35%,100%{
-    left:140%;
-  }
-
+    0 0 0 rgba(242,84,163,0);
 }
 
 .order:hover{
-  transform:translateY(-2px);
 
   filter:brightness(1.15);
 
-  box-shadow:
-    0 0 15px rgba(178,92,245,.5),
-    0 0 30px rgba(255,79,168,.2);
-}
-
-.order.ghost{
-  background:transparent;
-
-  border:1px solid rgba(178,92,245,.25);
-
-  color:var(--muted);
-
-  box-shadow:none;
-}
-
-.order.ghost:hover{
-  color:white;
-
-  border-color:#9b43ef;
+  transform:translateY(-2px);
 
   box-shadow:
+    0 8px 30px rgba(242,84,163,.25),
     0 0 20px rgba(178,92,245,.15);
 }
 
+.order.ghost{
+
+  background:transparent;
+
+  border:1px solid var(--border);
+
+  color:var(--muted);
+}
+
+.order.ghost:hover{
+
+  border-color:#4a3766;
+
+  color:#fff;
+
+  box-shadow:
+    0 0 20px rgba(178,92,245,.1);
+}
 
 /* =========================
    STOCK
@@ -1001,27 +956,38 @@ nav{
 }
 
 .ticker-groups{
+
   display:grid;
 
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
 
   gap:14px;
 }
 
 .ticker-card{
-  border:1px solid rgba(178,92,245,.18);
 
-  background:rgba(18,13,28,.75);
+  border:1px solid var(--border);
 
-  border-radius:14px;
+  background:rgba(19,16,25,.92);
+
+  border-radius:13px;
 
   overflow:hidden;
 
+  transition:.25s;
+}
+
+.ticker-card:hover{
+
+  border-color:#4c3768;
+
   box-shadow:
-    0 0 25px rgba(178,92,245,.03);
+    0 10px 30px rgba(178,92,245,.08);
 }
 
 .ticker-head{
+
   display:flex;
 
   align-items:center;
@@ -1030,25 +996,28 @@ nav{
 
   padding:16px 18px;
 
-  border-bottom:1px solid rgba(178,92,245,.13);
+  border-bottom:1px solid var(--border);
 
-  background:rgba(28,18,42,.65);
+  background:rgba(24,19,31,.95);
 }
 
 .ticker-head svg{
+
   width:18px;
   height:18px;
 }
 
 .ticker-head span{
-  font-family:var(--font-title);
 
-  font-size:14px;
+  font-family:var(--font-display);
 
-  font-weight:700;
+  font-size:14.5px;
+
+  font-weight:600;
 }
 
 .ticker-row{
+
   display:flex;
 
   align-items:center;
@@ -1057,11 +1026,11 @@ nav{
 
   padding:13px 18px;
 
-  border-bottom:1px solid rgba(178,92,245,.09);
+  border-bottom:1px solid var(--border);
 
   font-family:var(--font-mono);
 
-  font-size:12px;
+  font-size:13px;
 }
 
 .ticker-row:last-child{
@@ -1069,6 +1038,7 @@ nav{
 }
 
 .ticker-name{
+
   display:flex;
 
   align-items:center;
@@ -1077,6 +1047,7 @@ nav{
 }
 
 .ticker-name .dot{
+
   width:6px;
   height:6px;
 
@@ -1084,6 +1055,7 @@ nav{
 }
 
 .ticker-name .dot.ok{
+
   background:var(--green);
 
   box-shadow:
@@ -1096,55 +1068,61 @@ nav{
 }
 
 .ticker-row.sold .handle{
-  color:#5b5365;
+
+  color:var(--muted-2);
 
   text-decoration:line-through;
 }
 
 .ticker-tag{
-  font-size:10px;
 
-  color:#71677d;
+  font-size:11px;
+
+  color:var(--muted-2);
 }
 
 .ticker-tag.sold-tag{
   color:var(--red);
 }
 
-
 /* =========================
    CONTACT
 ========================= */
 
 .contact{
+
   text-align:center;
 
-  padding:100px 20px 88px;
+  padding:96px 20px 88px;
 }
 
 .contact h2{
+
   font-family:var(--font-display);
 
-  font-size:27px;
+  font-size:28px;
 
-  font-weight:700;
+  font-weight:600;
 
-  margin-bottom:12px;
+  letter-spacing:-.6px;
+
+  margin-bottom:10px;
 
   text-shadow:
-    0 0 10px rgba(255,255,255,.1),
-    0 0 22px rgba(178,92,245,.25);
+    0 0 20px rgba(178,92,245,.2);
 }
 
 .contact p{
+
   color:var(--muted);
 
-  font-size:13px;
+  font-size:14px;
 
   margin-bottom:28px;
 }
 
 .buttons{
+
   display:flex;
 
   justify-content:center;
@@ -1155,69 +1133,65 @@ nav{
 }
 
 .social{
+
   display:flex;
 
   align-items:center;
 
   gap:10px;
 
-  border:1px solid rgba(178,92,245,.18);
+  border:1px solid var(--border);
 
-  background:rgba(18,13,28,.75);
+  background:rgba(19,16,25,.9);
 
   padding:12px 22px;
 
   border-radius:10px;
 
-  font-size:13px;
+  font-size:14px;
+
+  color:var(--text);
 
   transition:.25s;
-
-  box-shadow:0 0 15px rgba(178,92,245,.03);
 }
 
 .social svg{
+
   width:18px;
   height:18px;
 }
 
 .social:hover{
+
   transform:translateY(-3px);
 
-  border-color:rgba(178,92,245,.5);
-
   box-shadow:
-    0 0 18px rgba(178,92,245,.15),
-    0 0 35px rgba(255,79,168,.08);
+    0 8px 25px rgba(178,92,245,.1);
 }
 
 .social.discord:hover{
   border-color:#5865F2;
-
-  box-shadow:0 0 20px rgba(88,101,242,.25);
 }
 
 .social.telegram:hover{
   border-color:#29A9EA;
-
-  box-shadow:0 0 20px rgba(41,169,234,.2);
 }
-
 
 /* =========================
    FOOTER
 ========================= */
 
 footer{
-  border-top:1px solid rgba(178,92,245,.15);
+
+  border-top:1px solid var(--border);
 
   padding:24px 0;
 
   text-align:center;
 
-  color:#5e5668;
+  color:var(--muted-2);
 
-  font-size:11px;
+  font-size:12px;
 
   font-family:var(--font-mono);
 
@@ -1231,19 +1205,19 @@ footer{
 }
 
 .footer-mascot{
-  width:23px;
-  height:23px;
+
+  width:22px;
+  height:22px;
 
   border-radius:50%;
 
   object-fit:cover;
 
-  border:1px solid rgba(178,92,245,.4);
+  border:1px solid var(--border);
 
   box-shadow:
-    0 0 8px rgba(178,92,245,.4);
+    0 0 10px rgba(178,92,245,.25);
 }
-
 
 /* =========================
    MOBILE
@@ -1264,92 +1238,69 @@ footer{
   }
 
   .hero{
-    padding-top:80px;
+    padding-top:76px;
   }
 
   .hero-mascot{
-    width:65px;
-    height:65px;
 
-    right:1% !important;
+    width:70px;
+    height:70px;
+
+    right:2% !important;
     top:-20px !important;
   }
 
-  .hero h1{
-    font-size:38px;
+  .blob{
+    filter:blur(55px);
   }
 
   .shooting-star{
-    width:80px;
+    width:90px;
   }
 
 }
 
-
-/* =========================
-   ACCESSIBILITY
-========================= */
-
 @media(prefers-reduced-motion:reduce){
 
-  *,
-  *::before,
-  *::after{
+  .blob,
+  .star,
+  .hero-mascot,
+  .logo .dot,
+  .hero h1,
+  .hero h1 .accent-text{
     animation:none !important;
-    transition:none !important;
   }
 
 }
 
 a:focus-visible{
-  outline:2px solid var(--accent2);
-  outline-offset:3px;
+
+  outline:2px solid var(--accent-2);
+
+  outline-offset:2px;
 }
 
 </style>
 </head>
 
-
 <body>
 
-
 <!-- =========================
-     ANIMATED BACKGROUND
+     BACKGROUND
 ========================= -->
 
-<div class="background">
+<div class="bg-blobs">
 
-  <div class="glow one"></div>
-  <div class="glow two"></div>
-  <div class="glow three"></div>
-
-  <div class="stars">
-
-    <span class="star" style="left:5%;animation-duration:8s;animation-delay:0s;"></span>
-    <span class="star" style="left:12%;animation-duration:11s;animation-delay:2s;"></span>
-    <span class="star" style="left:20%;animation-duration:9s;animation-delay:5s;"></span>
-    <span class="star" style="left:28%;animation-duration:13s;animation-delay:1s;"></span>
-    <span class="star" style="left:35%;animation-duration:10s;animation-delay:7s;"></span>
-    <span class="star" style="left:43%;animation-duration:12s;animation-delay:3s;"></span>
-    <span class="star" style="left:50%;animation-duration:9s;animation-delay:6s;"></span>
-    <span class="star" style="left:57%;animation-duration:14s;animation-delay:1s;"></span>
-    <span class="star" style="left:64%;animation-duration:10s;animation-delay:4s;"></span>
-    <span class="star" style="left:71%;animation-duration:12s;animation-delay:8s;"></span>
-    <span class="star" style="left:78%;animation-duration:9s;animation-delay:2s;"></span>
-    <span class="star" style="left:85%;animation-duration:13s;animation-delay:5s;"></span>
-    <span class="star" style="left:92%;animation-duration:11s;animation-delay:0s;"></span>
-
-    <span class="shooting-star"></span>
-    <span class="shooting-star"></span>
-    <span class="shooting-star"></span>
-
-  </div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
 
 </div>
 
+<div class="stars" id="stars"></div>
+
 
 <div class="container">
-
 
 <!-- =========================
      NAV
@@ -1371,7 +1322,6 @@ a:focus-visible{
 
   </div>
 
-
   <div class="nav-right">
 
     <a href="#shop">Shop</a>
@@ -1380,7 +1330,12 @@ a:focus-visible{
 
     <a href="#contact">Contact</a>
 
-    <a href="index.html" style="color:var(--muted2)">FR</a>
+    <a
+      href="index.html"
+      style="color:var(--muted-2)"
+    >
+      FR
+    </a>
 
   </div>
 
@@ -1393,7 +1348,6 @@ a:focus-visible{
 
 <section class="hero">
 
-
   <div class="eyebrow">
 
     <span></span>
@@ -1405,29 +1359,31 @@ a:focus-visible{
 
   <h1>
 
-    Selling
-    <span class="accent-text">OG</span>
-    names.
+    Selling <span class="accent-text">OG</span> names.
 
   </h1>
 
 
   <p>
 
-    3-letter and 3-character names for Discord, Kick, Ubisoft and Minecraft
-    — verified and transferred fast.
+    3-letter and 3-character names for Discord, Kick,
+    Ubisoft and Minecraft — verified and transferred fast.
 
   </p>
 
 
   <div class="platform-row">
 
-
     <div class="platform-badge">
 
       <svg viewBox="0 0 24 24">
 
-        <circle cx="12" cy="12" r="11" fill="#5865F2"/>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          fill="#5865F2"
+        />
 
         <text
           x="12"
@@ -1450,7 +1406,12 @@ a:focus-visible{
 
       <svg viewBox="0 0 24 24">
 
-        <circle cx="12" cy="12" r="11" fill="#53FC18"/>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          fill="#53FC18"
+        />
 
         <text
           x="12"
@@ -1473,7 +1434,12 @@ a:focus-visible{
 
       <svg viewBox="0 0 24 24">
 
-        <circle cx="12" cy="12" r="11" fill="#0070FF"/>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          fill="#0070FF"
+        />
 
         <text
           x="12"
@@ -1496,7 +1462,12 @@ a:focus-visible{
 
       <svg viewBox="0 0 24 24">
 
-        <circle cx="12" cy="12" r="11" fill="#62A63C"/>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          fill="#62A63C"
+        />
 
         <text
           x="12"
@@ -1514,7 +1485,6 @@ a:focus-visible{
 
     </div>
 
-
   </div>
 
 
@@ -1525,9 +1495,7 @@ a:focus-visible{
     style="top:-30px;right:6%;"
   >
 
-
 </section>
-
 
 
 <!-- =========================
@@ -1535,7 +1503,6 @@ a:focus-visible{
 ========================= -->
 
 <section id="shop">
-
 
   <div class="section-label">
     // Shop
@@ -1557,7 +1524,12 @@ a:focus-visible{
 
         <svg viewBox="0 0 24 24">
 
-          <circle cx="12" cy="12" r="11" fill="#0070FF"/>
+          <circle
+            cx="12"
+            cy="12"
+            r="11"
+            fill="#0070FF"
+          />
 
           <text
             x="12"
@@ -1578,9 +1550,13 @@ a:focus-visible{
 
       <div class="product-top">
 
-        <h2>Ubisoft 3L</h2>
+        <h2>
+          Ubisoft 3L
+        </h2>
 
-        <span class="price">35€</span>
+        <span class="price">
+          35€
+        </span>
 
       </div>
 
@@ -1592,14 +1568,13 @@ a:focus-visible{
 
       <p class="description">
 
-        Ubisoft 3-letter name, random combination based on current availability.
+        Ubisoft 3-letter name, random combination
+        based on current availability.
 
       </p>
 
 
-      <!-- STRIPE 35€ -->
-
-      <!-- REMPLACE UNIQUEMENT TON_LIEN_STRIPE_3L -->
+      <!-- REMPLACE UNIQUEMENT CE LIEN PAR TON LIEN STRIPE -->
 
       <a
         class="order"
@@ -1607,14 +1582,10 @@ a:focus-visible{
         target="_blank"
         rel="noopener noreferrer"
       >
-
         Buy now
-
       </a>
 
-
     </div>
-
 
 
     <!-- UBISOFT 3C -->
@@ -1625,7 +1596,12 @@ a:focus-visible{
 
         <svg viewBox="0 0 24 24">
 
-          <circle cx="12" cy="12" r="11" fill="#0070FF"/>
+          <circle
+            cx="12"
+            cy="12"
+            r="11"
+            fill="#0070FF"
+          />
 
           <text
             x="12"
@@ -1646,9 +1622,13 @@ a:focus-visible{
 
       <div class="product-top">
 
-        <h2>Ubisoft 3C</h2>
+        <h2>
+          Ubisoft 3C
+        </h2>
 
-        <span class="price">25€</span>
+        <span class="price">
+          25€
+        </span>
 
       </div>
 
@@ -1660,14 +1640,13 @@ a:focus-visible{
 
       <p class="description">
 
-        Ubisoft 3-character name, random combination of letters and numbers based on availability.
+        Ubisoft 3-character name, random combination
+        of letters and numbers based on availability.
 
       </p>
 
 
-      <!-- STRIPE 25€ -->
-
-      <!-- REMPLACE UNIQUEMENT TON_LIEN_STRIPE_3C -->
+      <!-- REMPLACE UNIQUEMENT CE LIEN PAR TON LIEN STRIPE -->
 
       <a
         class="order"
@@ -1675,17 +1654,13 @@ a:focus-visible{
         target="_blank"
         rel="noopener noreferrer"
       >
-
         Buy now
-
       </a>
-
 
     </div>
 
 
-
-    <!-- DISCORD 3 LETTER -->
+    <!-- DISCORD -->
 
     <div class="product">
 
@@ -1693,7 +1668,12 @@ a:focus-visible{
 
         <svg viewBox="0 0 24 24">
 
-          <circle cx="12" cy="12" r="11" fill="#5865F2"/>
+          <circle
+            cx="12"
+            cy="12"
+            r="11"
+            fill="#5865F2"
+          />
 
           <text
             x="12"
@@ -1714,9 +1694,13 @@ a:focus-visible{
 
       <div class="product-top">
 
-        <h2>3 Letter</h2>
+        <h2>
+          3 Letter
+        </h2>
 
-        <span class="price">320€</span>
+        <span class="price">
+          320€
+        </span>
 
       </div>
 
@@ -1728,7 +1712,9 @@ a:focus-visible{
 
       <p class="description">
 
-        Discord 3-letter name. Nothing available at the moment — contact me to be notified on the next drop.
+        Discord 3-letter name. Nothing available at
+        the moment — contact me to be notified on
+        the next drop.
 
       </p>
 
@@ -1739,14 +1725,10 @@ a:focus-visible{
         target="_blank"
         rel="noopener noreferrer"
       >
-
         Notify me
-
       </a>
 
-
     </div>
-
 
 
     <!-- MINECRAFT -->
@@ -1757,7 +1739,12 @@ a:focus-visible{
 
         <svg viewBox="0 0 24 24">
 
-          <circle cx="12" cy="12" r="11" fill="#62A63C"/>
+          <circle
+            cx="12"
+            cy="12"
+            r="11"
+            fill="#62A63C"
+          />
 
           <text
             x="12"
@@ -1778,9 +1765,13 @@ a:focus-visible{
 
       <div class="product-top">
 
-        <h2>3 Letter</h2>
+        <h2>
+          3 Letter
+        </h2>
 
-        <span class="price">295€</span>
+        <span class="price">
+          295€
+        </span>
 
       </div>
 
@@ -1792,7 +1783,8 @@ a:focus-visible{
 
       <p class="description">
 
-        Minecraft 3-letter name, only one currently in stock.
+        Minecraft 3-letter name, only one currently
+        in stock.
 
       </p>
 
@@ -1803,32 +1795,28 @@ a:focus-visible{
         target="_blank"
         rel="noopener noreferrer"
       >
-
         Contact me to learn more
-
       </a>
 
-
     </div>
-
 
   </div>
 
 </section>
 
 
-
 <!-- =========================
      LIVE STOCK
 ========================= -->
 
-<section class="stock" id="stock">
-
+<section
+  class="stock"
+  id="stock"
+>
 
   <div class="section-label">
     // Live stock
   </div>
-
 
   <div class="section-title">
     Names available now
@@ -1846,7 +1834,12 @@ a:focus-visible{
 
         <svg viewBox="0 0 24 24">
 
-          <circle cx="12" cy="12" r="11" fill="#53FC18"/>
+          <circle
+            cx="12"
+            cy="12"
+            r="11"
+            fill="#53FC18"
+          />
 
           <text
             x="12"
@@ -1860,7 +1853,9 @@ a:focus-visible{
 
         </svg>
 
-        <span>Kick</span>
+        <span>
+          Kick
+        </span>
 
       </div>
 
@@ -1871,7 +1866,9 @@ a:focus-visible{
 
           <span class="dot ok"></span>
 
-          <span class="handle">@juge</span>
+          <span class="handle">
+            @juge
+          </span>
 
         </div>
 
@@ -1888,7 +1885,9 @@ a:focus-visible{
 
           <span class="dot ok"></span>
 
-          <span class="handle">@policier</span>
+          <span class="handle">
+            @policier
+          </span>
 
         </div>
 
@@ -1905,7 +1904,9 @@ a:focus-visible{
 
           <span class="dot ok"></span>
 
-          <span class="handle">@officier</span>
+          <span class="handle">
+            @officier
+          </span>
 
         </div>
 
@@ -1922,7 +1923,9 @@ a:focus-visible{
 
           <span class="dot ok"></span>
 
-          <span class="handle">@europe</span>
+          <span class="handle">
+            @europe
+          </span>
 
         </div>
 
@@ -1935,7 +1938,6 @@ a:focus-visible{
     </div>
 
 
-
     <!-- MINECRAFT -->
 
     <div class="ticker-card">
@@ -1944,7 +1946,12 @@ a:focus-visible{
 
         <svg viewBox="0 0 24 24">
 
-          <circle cx="12" cy="12" r="11" fill="#62A63C"/>
+          <circle
+            cx="12"
+            cy="12"
+            r="11"
+            fill="#62A63C"
+          />
 
           <text
             x="12"
@@ -1958,7 +1965,9 @@ a:focus-visible{
 
         </svg>
 
-        <span>Minecraft</span>
+        <span>
+          Minecraft
+        </span>
 
       </div>
 
@@ -1969,7 +1978,9 @@ a:focus-visible{
 
           <span class="dot ok"></span>
 
-          <span class="handle">@9h00</span>
+          <span class="handle">
+            @9h00
+          </span>
 
         </div>
 
@@ -1982,7 +1993,6 @@ a:focus-visible{
     </div>
 
 
-
     <!-- DISCORD -->
 
     <div class="ticker-card">
@@ -1991,7 +2001,12 @@ a:focus-visible{
 
         <svg viewBox="0 0 24 24">
 
-          <circle cx="12" cy="12" r="11" fill="#5865F2"/>
+          <circle
+            cx="12"
+            cy="12"
+            r="11"
+            fill="#5865F2"
+          />
 
           <text
             x="12"
@@ -2005,7 +2020,9 @@ a:focus-visible{
 
         </svg>
 
-        <span>Discord</span>
+        <span>
+          Discord
+        </span>
 
       </div>
 
@@ -2016,7 +2033,9 @@ a:focus-visible{
 
           <span class="dot ok"></span>
 
-          <span class="handle">@officier</span>
+          <span class="handle">
+            @officier
+          </span>
 
         </div>
 
@@ -2033,7 +2052,9 @@ a:focus-visible{
 
           <span class="dot sold"></span>
 
-          <span class="handle">@zrj</span>
+          <span class="handle">
+            @zrj
+          </span>
 
         </div>
 
@@ -2045,24 +2066,23 @@ a:focus-visible{
 
     </div>
 
-
   </div>
 
 </section>
-
 
 
 <!-- =========================
      CONTACT
 ========================= -->
 
-<section class="contact" id="contact">
-
+<section
+  class="contact"
+  id="contact"
+>
 
   <h2>
     Questions or orders?
   </h2>
-
 
   <p>
     Fast reply on Discord or Telegram
@@ -2079,7 +2099,10 @@ a:focus-visible{
       rel="noopener noreferrer"
     >
 
-      <svg viewBox="0 0 24 24" fill="#5865F2">
+      <svg
+        viewBox="0 0 24 24"
+        fill="#5865F2"
+      >
 
         <path d="M20.3 5.4A17.6 17.6 0 0016 4l-.3.6a13.6 13.6 0 015.1 2.6 16.6 16.6 0 00-14 0A13.6 13.6 0 0111.9 4L11.6 4a17.6 17.6 0 00-4.3 1.4C4.6 9 3.8 12.4 4.1 15.8A17.7 17.7 0 009 18l.9-1.4a11.4 11.4 0 01-1.8-.9l.4-.3a12.6 12.6 0 0011 0l.4.3c-.6.3-1.2.6-1.8.9L19 18a17.7 17.7 0 004.9-2.2c.4-4-.6-7.3-3.6-10.4zM9.7 13.9c-.8 0-1.5-.8-1.5-1.7s.7-1.7 1.5-1.7 1.5.8 1.5 1.7-.7 1.7-1.5 1.7zm5.6 0c-.8 0-1.5-.8-1.5-1.7s.7-1.7 1.5-1.7 1.5.8 1.5 1.7-.7 1.7-1.5 1.7z"/>
 
@@ -2090,7 +2113,6 @@ a:focus-visible{
     </a>
 
 
-
     <a
       class="social telegram"
       href="https://t.me/nawfas"
@@ -2098,7 +2120,10 @@ a:focus-visible{
       rel="noopener noreferrer"
     >
 
-      <svg viewBox="0 0 24 24" fill="#29A9EA">
+      <svg
+        viewBox="0 0 24 24"
+        fill="#29A9EA"
+      >
 
         <path d="M21.5 3.5L2.7 10.9c-1.2.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.4.8.9.8.5 0 .7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.8l3.2-15c.3-1.2-.5-1.7-1.4-1.3z"/>
 
@@ -2108,11 +2133,9 @@ a:focus-visible{
 
     </a>
 
-
   </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -2131,9 +2154,141 @@ a:focus-visible{
 
 </footer>
 
-
 </div>
 
+
+<!-- =========================
+     STAR SYSTEM
+========================= -->
+
+<script>
+
+const starsContainer =
+  document.getElementById("stars");
+
+
+/*
+  Création de petites étoiles fixes
+*/
+
+for(let i = 0; i < 95; i++){
+
+  const star =
+    document.createElement("div");
+
+  star.className = "star";
+
+  star.style.left =
+    Math.random() * 100 + "%";
+
+  star.style.top =
+    Math.random() * 100 + "%";
+
+  const size =
+    Math.random() * 2 + 1;
+
+  star.style.width =
+    size + "px";
+
+  star.style.height =
+    size + "px";
+
+  star.style.setProperty(
+    "--duration",
+    (Math.random() * 3 + 2) + "s"
+  );
+
+  star.style.animationDelay =
+    (Math.random() * 4) + "s";
+
+  starsContainer.appendChild(star);
+}
+
+
+/*
+  Étoiles filantes
+*/
+
+function createShootingStar(){
+
+  const shooting =
+    document.createElement("div");
+
+  shooting.className =
+    "shooting-star";
+
+  /*
+    Elles apparaissent depuis
+    différentes zones de l'écran.
+  */
+
+  shooting.style.left =
+    (Math.random() * 100 + 10) + "%";
+
+  shooting.style.top =
+    (Math.random() * 45 - 5) + "%";
+
+  /*
+    Taille aléatoire
+  */
+
+  shooting.style.width =
+    (80 + Math.random() * 100) + "px";
+
+  starsContainer.appendChild(shooting);
+
+
+  /*
+    Suppression après animation
+  */
+
+  setTimeout(() => {
+
+    shooting.remove();
+
+  }, 1900);
+
+}
+
+
+/*
+  Première étoile après 1 seconde
+*/
+
+setTimeout(
+  createShootingStar,
+  1000
+);
+
+
+/*
+  Nouvelle étoile filante
+  toutes les 1.5 à 3.5 secondes
+*/
+
+setInterval(() => {
+
+  createShootingStar();
+
+}, 1800 + Math.random() * 1700);
+
+
+/*
+  Deuxième petite animation indépendante
+  pour avoir parfois deux étoiles rapprochées
+*/
+
+setInterval(() => {
+
+  if(Math.random() > .45){
+
+    createShootingStar();
+
+  }
+
+}, 4200);
+
+</script>
 
 </body>
 </html>
