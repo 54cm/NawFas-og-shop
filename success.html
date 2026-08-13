@@ -1,16 +1,15 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Paiement confirmé — NawFas</title>
+  <title>Payment Confirmed — NawFas</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- ⬇️⬇️⬇️ METS L'IMAGE ICI ⬇️⬇️⬇️ -->
+  <!-- Remplace "dog-favicon.png" par le nom/chemin exact de ton image (ex: chien.jpg) -->
+  <link rel="icon" type="image/png" href="https://i.imgur.com/leb1Na9.jpeg">
+  <!-- ⬆️⬆️⬆️ METS L'IMAGE ICI ⬆️⬆️⬆️ -->
 
   <style>
     :root {
@@ -22,6 +21,8 @@
       --accent: #b25cf5;
       --accent-2: #f254a3;
       --green: #4fd6b5;
+      --discord: #5865f2;
+      --telegram: #29a9eb;
     }
 
     * {
@@ -42,7 +43,7 @@
         #07060b;
 
       color: var(--text);
-      font-family: Inter, sans-serif;
+      font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
     }
 
     .card {
@@ -83,7 +84,7 @@
     }
 
     h1 {
-      font-family: "Space Grotesk", sans-serif;
+      font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
       font-size: 32px;
       margin-bottom: 15px;
     }
@@ -107,17 +108,34 @@
       border-radius: 12px;
 
       background: rgba(7,6,11,.5);
+      text-align: left;
     }
 
     .contact strong {
       display: block;
       margin-bottom: 8px;
       color: white;
+      text-align: center;
     }
 
-    .contact span {
-      font-family: "IBM Plex Mono", monospace;
+    .contact .desc {
+      text-align: center;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 6px 0;
+    }
+
+    .contact-row span {
+      font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
       color: #d99aff;
+      font-size: 14px;
     }
 
     .buttons {
@@ -127,26 +145,34 @@
       flex-wrap: wrap;
     }
 
-    a {
-      display: inline-block;
+    a, button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
       padding: 12px 20px;
       border-radius: 9px;
+      border: none;
 
       color: white;
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
-
-      background: linear-gradient(
-        100deg,
-        var(--accent),
-        var(--accent-2)
-      );
+      font-family: inherit;
+      cursor: pointer;
 
       transition: .2s;
     }
 
-    a:hover {
+    .btn-discord {
+      background: var(--discord);
+    }
+
+    .btn-telegram {
+      background: var(--telegram);
+    }
+
+    a:hover, button:hover {
       transform: translateY(-2px);
       filter: brightness(1.1);
     }
@@ -161,6 +187,37 @@
       color: white;
       border-color: #4c3768;
     }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    .copy-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+
+      padding: 12px 22px;
+      border-radius: 9px;
+
+      background: var(--green);
+      color: #07060b;
+      font-weight: 600;
+      font-size: 14px;
+
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   </style>
 </head>
 
@@ -171,41 +228,44 @@
     <div class="check">✓</div>
 
     <h1>
-      <span class="success">Paiement confirmé !</span>
+      <span class="success">Payment Confirmed!</span>
     </h1>
 
     <p>
-      Merci pour ton achat chez NawFas.<br>
-      Ton paiement a bien été reçu.
+      Thank you for your purchase from NawFas.<br>
+      Your payment has been successfully received.
     </p>
 
     <div class="contact">
-      <strong>Dernière étape</strong>
+      <strong>Last Step</strong>
+      <span class="desc">Contact me on Discord or Telegram to receive your name.</span>
 
-      Contacte-moi sur Discord ou Telegram
-      pour recevoir ton nom.
-      <br><br>
-
-      <span>Discord : @nawfas</span>
-      <br>
-      <span>Telegram : @nawfas</span>
+      <div class="contact-row">
+        <span>Discord: @nawfas</span>
+      </div>
+      <div class="contact-row">
+        <span>Telegram: @nawfas</span>
+      </div>
     </div>
 
     <div class="buttons">
 
-      <a
-        href="https://discord.com/users/622098045110190080"
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        class="btn-discord"
+        id="copyDiscordBtn"
+        type="button"
       >
-        Discord
-      </a>
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3c-.211.375-.444.87-.608 1.262a18.27 18.27 0 0 0-5.9 0A12.64 12.64 0 0 0 9.442 3 19.736 19.736 0 0 0 5.68 4.373C2.437 9.204 1.55 13.916 1.994 18.559a19.9 19.9 0 0 0 5.993 3.03c.483-.657.914-1.354 1.284-2.087a12.9 12.9 0 0 1-2.023-.973c.17-.124.336-.253.497-.386a14.16 14.16 0 0 0 12.51 0c.163.133.328.262.497.386-.643.383-1.32.71-2.025.974.372.732.802 1.43 1.285 2.086a19.84 19.84 0 0 0 5.997-3.03c.522-5.383-.892-10.05-3.692-14.19ZM8.02 15.663c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.42 2.157-2.42 1.211 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419Zm7.974 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.42 2.157-2.42 1.211 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419Z"/></svg>
+        Copier @nawfas
+      </button>
 
       <a
+        class="btn-telegram"
         href="https://t.me/nawfas"
         target="_blank"
         rel="noopener noreferrer"
       >
+        <svg class="icon" viewBox="0 0 24 24"><path d="M21.944 4.667 18.7 20.15c-.245 1.09-.888 1.36-1.8.848l-4.97-3.665-2.398 2.309c-.265.265-.487.487-.998.487l.357-5.06 9.212-8.325c.4-.357-.087-.556-.62-.199L6.14 12.887l-4.936-1.545c-1.073-.336-1.093-1.073.224-1.588L20.6 3.42c.894-.336 1.677.199 1.344 1.247Z"/></svg>
         Telegram
       </a>
 
@@ -213,13 +273,42 @@
         href="https://54cm.github.io/NawFas-og-shop/"
         class="secondary"
       >
-        Retour au site
+        Back to Shop
       </a>
 
     </div>
 
   </div>
 
+  <div class="copy-toast" id="copyToast">Pseudo copié : nawfas</div>
+
+  <script>
+    const copyBtn = document.getElementById('copyDiscordBtn');
+    const toast = document.getElementById('copyToast');
+
+    copyBtn.addEventListener('click', async () => {
+      const username = 'nawfas';
+      try {
+        await navigator.clipboard.writeText(username);
+      } catch (err) {
+        // Fallback pour navigateurs/contextes sans permission clipboard
+        const tmp = document.createElement('textarea');
+        tmp.value = username;
+        tmp.style.position = 'fixed';
+        tmp.style.opacity = '0';
+        document.body.appendChild(tmp);
+        tmp.select();
+        document.execCommand('copy');
+        document.body.removeChild(tmp);
+      }
+
+      toast.classList.add('show');
+      clearTimeout(copyBtn._toastTimeout);
+      copyBtn._toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    });
+  </script>
+
 </body>
 </html>
-```
