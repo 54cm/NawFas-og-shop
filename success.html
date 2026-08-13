@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Payment Confirmed — NawFas</title>
 
-  <!-- ⬇️⬇️⬇️ METS L'IMAGE ICI ⬇️⬇️⬇️ -->
-  <!-- Remplace "dog-favicon.png" par le nom/chemin exact de ton image (ex: chien.jpg) -->
   <link rel="icon" type="image/png" href="https://i.imgur.com/leb1Na9.jpeg">
-  <!-- ⬆️⬆️⬆️ METS L'IMAGE ICI ⬆️⬆️⬆️ -->
 
   <style>
     :root {
@@ -37,11 +34,9 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-
       background:
         radial-gradient(circle at 50% 30%, rgba(178,92,245,.12), transparent 40%),
         #07060b;
-
       color: var(--text);
       font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
     }
@@ -49,13 +44,10 @@
     .card {
       width: min(520px, 100%);
       text-align: center;
-
       padding: 45px 30px;
-
       background: rgba(19,16,25,.95);
       border: 1px solid var(--border);
       border-radius: 18px;
-
       box-shadow:
         0 20px 70px rgba(0,0,0,.4),
         0 0 40px rgba(178,92,245,.08);
@@ -64,23 +56,16 @@
     .check {
       width: 70px;
       height: 70px;
-
       margin: 0 auto 25px;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 50%;
-
       background: rgba(79,214,181,.1);
       border: 2px solid var(--green);
-
       color: var(--green);
       font-size: 32px;
-
-      box-shadow:
-        0 0 25px rgba(79,214,181,.2);
+      box-shadow: 0 0 25px rgba(79,214,181,.2);
     }
 
     h1 {
@@ -103,10 +88,8 @@
     .contact {
       margin: 25px 0;
       padding: 18px;
-
       border: 1px solid var(--border);
       border-radius: 12px;
-
       background: rgba(7,6,11,.5);
       text-align: left;
     }
@@ -145,22 +128,20 @@
       flex-wrap: wrap;
     }
 
-    a, button {
+    a,
+    button {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-
       padding: 12px 20px;
       border-radius: 9px;
       border: none;
-
       color: white;
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
       font-family: inherit;
       cursor: pointer;
-
       transition: .2s;
     }
 
@@ -172,7 +153,8 @@
       background: var(--telegram);
     }
 
-    a:hover, button:hover {
+    a:hover,
+    button:hover {
       transform: translateY(-2px);
       filter: brightness(1.1);
     }
@@ -200,15 +182,12 @@
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%) translateY(20px);
-
       padding: 12px 22px;
       border-radius: 9px;
-
       background: var(--green);
       color: #07060b;
       font-weight: 600;
       font-size: 14px;
-
       opacity: 0;
       pointer-events: none;
       transition: opacity .25s ease, transform .25s ease;
@@ -238,11 +217,15 @@
 
     <div class="contact">
       <strong>Last Step</strong>
-      <span class="desc">Contact me on Discord or Telegram to receive your name.</span>
+
+      <span class="desc">
+        Contact me on Discord or Telegram to receive your name.
+      </span>
 
       <div class="contact-row">
         <span>Discord: @nawfas</span>
       </div>
+
       <div class="contact-row">
         <span>Telegram: @nawfas</span>
       </div>
@@ -255,8 +238,10 @@
         id="copyDiscordBtn"
         type="button"
       >
-        <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3c-.211.375-.444.87-.608 1.262a18.27 18.27 0 0 0-5.9 0A12.64 12.64 0 0 0 9.442 3 19.736 19.736 0 0 0 5.68 4.373C2.437 9.204 1.55 13.916 1.994 18.559a19.9 19.9 0 0 0 5.993 3.03c.483-.657.914-1.354 1.284-2.087a12.9 12.9 0 0 1-2.023-.973c.17-.124.336-.253.497-.386a14.16 14.16 0 0 0 12.51 0c.163.133.328.262.497.386-.643.383-1.32.71-2.025.974.372.732.802 1.43 1.285 2.086a19.84 19.84 0 0 0 5.997-3.03c.522-5.383-.892-10.05-3.692-14.19ZM8.02 15.663c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.42 2.157-2.42 1.211 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419Zm7.974 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.42 2.157-2.42 1.211 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419Z"/></svg>
-        Copier @nawfas
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3c-.211.375-.444.87-.608 1.262a18.27 18.27 0 0 0-5.9 0A12.64 12.64 0 0 0 9.442 3 19.736 19.736 0 0 0 5.68 4.373C2.437 9.204 1.55 13.916 1.994 18.559a19.9 19.9 0 0 0 5.993 3.03c.483-.657.914-1.354 1.284-2.087a12.9 12.9 0 0 1-2.023-.973c.17-.124.336-.253.497-.386a14.16 14.16 0 0 0 12.51 0c.163.133.328.262.497.386-.643.383-1.32.71-2.025.974.372.732.802 1.43 1.285 2.086a19.84 19.84 0 0 0 5.997-3.03c.522-5.383-.892-10.05-3.692-14.19ZM8.02 15.663c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.42 2.157-2.42 1.211 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419Zm7.974 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.42 2.157-2.42 1.211 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419Z"/>
+        </svg>
+        Copy @nawfas
       </button>
 
       <a
@@ -265,7 +250,9 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <svg class="icon" viewBox="0 0 24 24"><path d="M21.944 4.667 18.7 20.15c-.245 1.09-.888 1.36-1.8.848l-4.97-3.665-2.398 2.309c-.265.265-.487.487-.998.487l.357-5.06 9.212-8.325c.4-.357-.087-.556-.62-.199L6.14 12.887l-4.936-1.545c-1.073-.336-1.093-1.073.224-1.588L20.6 3.42c.894-.336 1.677.199 1.344 1.247Z"/></svg>
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M21.944 4.667 18.7 20.15c-.245 1.09-.888 1.36-1.8.848l-4.97-3.665-2.398 2.309c-.265.265-.487.487-.998.487l.357-5.06 9.212-8.325c.4-.357-.087-.556-.62-.199L6.14 12.887l-4.936-1.545c-1.073-.336-1.093-1.073.224-1.588L20.6 3.42c.894-.336 1.677.199 1.344 1.247Z"/>
+        </svg>
         Telegram
       </a>
 
@@ -280,32 +267,38 @@
 
   </div>
 
-  <div class="copy-toast" id="copyToast">Pseudo copié : nawfas</div>
+  <div class="copy-toast" id="copyToast">
+    Discord username copied: @nawfas
+  </div>
 
   <script>
-    const copyBtn = document.getElementById('copyDiscordBtn');
-    const toast = document.getElementById('copyToast');
+    const copyBtn = document.getElementById("copyDiscordBtn");
+    const toast = document.getElementById("copyToast");
 
-    copyBtn.addEventListener('click', async () => {
-      const username = 'nawfas';
+    copyBtn.addEventListener("click", async () => {
+      const username = "@nawfas";
+
       try {
         await navigator.clipboard.writeText(username);
       } catch (err) {
-        // Fallback pour navigateurs/contextes sans permission clipboard
-        const tmp = document.createElement('textarea');
+        const tmp = document.createElement("textarea");
+
         tmp.value = username;
-        tmp.style.position = 'fixed';
-        tmp.style.opacity = '0';
+        tmp.style.position = "fixed";
+        tmp.style.opacity = "0";
+
         document.body.appendChild(tmp);
         tmp.select();
-        document.execCommand('copy');
+        document.execCommand("copy");
         document.body.removeChild(tmp);
       }
 
-      toast.classList.add('show');
+      toast.classList.add("show");
+
       clearTimeout(copyBtn._toastTimeout);
+
       copyBtn._toastTimeout = setTimeout(() => {
-        toast.classList.remove('show');
+        toast.classList.remove("show");
       }, 2000);
     });
   </script>
